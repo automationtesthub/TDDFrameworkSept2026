@@ -1,0 +1,17 @@
+{
+    "TC01": {
+        "username": "admin123",
+        "password": "admin23525"
+    },
+    "TC02": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "TC03": {
+        "username": "admin",
+        "password": "admin",
+        "lastname": "Modi",
+        "company": "BJP"
+    } 
+
+}

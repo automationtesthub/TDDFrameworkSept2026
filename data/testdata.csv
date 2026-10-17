@@ -1,0 +1,4 @@
+TestCaseName,Username,Password,Lastname,Company
+TC01_invalid_Login_test,admi33r,253235,,
+TC02_valid_Login_test,admin,admin,,
+TC03_Create_lead_with_mandatory_fields,admin,admin,Modi,BJP
