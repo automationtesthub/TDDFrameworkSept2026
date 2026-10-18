@@ -18,7 +18,7 @@ test('try_problem_user_in_saucelab', async ({ page }) => {
   await page.waitForTimeout(2000);
   await expect(page.getByText('Your Cart')).toBeVisible();
   await page.locator('//*[@id="checkout"]').click();
-  await page.waitForTimeout(2000);
+  
   //await page.locator('//*[@id="remove-sauce-labs-backpack"]').click();
 });
 
