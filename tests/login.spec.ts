@@ -16,6 +16,7 @@ test('TC01_invalid_Login_test', async ({ page }) => {
    const loginPage = new LoginPage(page);
    await loginPage.login(td['Username'], td['Password']);
    await expect(loginPage.verifyErrorMsg()).toBeTruthy();
+
  
 });
 
@@ -27,6 +28,7 @@ test('TC02_valid_Login_test', async ({ page }) => {
    await loginPage.login(td['Username'], td['Password']);
    await expect(page.locator('//a[text()="Logout"]')).toBeVisible();
    const homePage = new HomePage(page);
+    await expect(homePage.verifyHomeLink()).toBeTruthy();
     await expect(homePage.verifyHomeLink()).toBeTruthy();
  
 });
