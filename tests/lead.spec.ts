@@ -1,22 +1,21 @@
-import{test,expect}from'@playwright/test';
-import{LoginPage}from'../pages/loginpage';
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/loginpage';
 import { HomePage } from '../pages/homepage';
-import { LeadPage } from '../pages/leadpage';
-import { getTestData } from '../utility/excel_reader';
 
+test('TC03_Create_lead_with_mandatory_fields', async ({ page }) => {
+  await page.goto('/');
 
-test('TC03_Create_lead_with_mandatory_fields',async({page})=>{
- const td = getTestData('TC03_Create_lead_with_mandatory_fields');
-    page.goto('/');
-    const loginPage=new LoginPage(page);
-    await loginPage.login(td['Username'], td['Password']);
-    const homepage = new HomePage(page);
-    await expect(homepage.verifyHomeLink()).toBeTruthy();
-    await homepage.clickNewLeadLink();
-    const leadPage = new LeadPage(page);
-    await leadPage.createLead(td['Lastname'], td['Company']);
-    await page.waitForTimeout(2000);
-    
-    await homepage.clickLogoutLink();
+  const loginPage = new LoginPage(page);
+  await loginPage.login('standard_user', 'secret_sauce');
 
+  const homePage = new HomePage(page);
+  await expect(await homePage.verifyHomeLink()).toBeTruthy();
+
+  const productButton = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
+  await productButton.click();
+
+  await expect(page.locator('[data-test="remove-sauce-labs-backpack"]')).toBeVisible();
+  await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+
+  await homePage.clickLogoutLink();
 });

@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 test('try_problem_user_in_saucelab', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
@@ -22,5 +22,3 @@ test('try_problem_user_in_saucelab', async ({ page }) => {
   
   //await page.locator('//*[@id="remove-sauce-labs-backpack"]').click();
 });
-
-
