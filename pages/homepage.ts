@@ -1,61 +1,25 @@
+export class HomePage {
+  inventoryList = '.inventory_list';
+  burgerMenu = '#react-burger-menu-btn';
+  logoutLink = '#logout_sidebar_link';
 
-export class HomePage
-{
+  page: any;
 
-    linknewlead = "//a[text()='New Lead']";
-    linklogout = "//a[text()='Logout']";
-    linkleads = "//a[text()='Leads']";
-    linkhome = "//a[text()='Home']";
-    
+  constructor(page: any) {
+    this.page = page;
+  }
 
-    page: any;
+  async verifyHomeLink(): Promise<boolean> {
+    return await this.page.locator(this.inventoryList).isVisible();
+  }
 
-    constructor(page: any)
-    {
-        this.page = page;
-    }
+  async verifyLogoutLink(): Promise<boolean> {
+    await this.page.locator(this.burgerMenu).click();
+    return await this.page.locator(this.logoutLink).isVisible();
+  }
 
-
-   async verifyHomeLink(): Promise<boolean>
-   {
-      return await this.page.locator(this.linkhome).isVisible();
-   }
-
-   async verifyLeadsLink(): Promise<boolean>
-   {
-      return await this.page.locator(this.linkleads).isVisible();
-   }
-
-    async verifyNewLeadLink(): Promise<boolean> 
-    {
-       return await this.page.locator(this.linknewlead).isVisible();
-    }
-
-    async verifyLogoutLink(): Promise<boolean>
-    {
-       return await this.page.locator(this.linklogout).isVisible();
-    }
-
-    async clickNewLeadLink()
-    {
-       await this.page.locator(this.linknewlead).click();
-    }
-
-    async clickLeadsLink()
-    {
-       await this.page.locator(this.linkleads).click();
-    }
-
-    async clickHomeLink()
-    {
-       await this.page.locator(this.linkhome).click();
-    }
-
-    async clickLogoutLink()
-    {
-       await this.page.locator(this.linklogout).click();
-    }
-
-
-
+  async clickLogoutLink() {
+    await this.page.locator(this.burgerMenu).click();
+    await this.page.locator(this.logoutLink).click();
+  }
 }
